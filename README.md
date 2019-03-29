@@ -1,3 +1,4 @@
+# This fork is designed for use with processes using mono-2.0-bdwgc.dll
 # mono-assembly-injector
 
 Inject assemblies into mono embedded processes like UnityEngine Games
