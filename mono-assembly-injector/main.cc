@@ -46,7 +46,7 @@ std::vector<char> FileReadAllBytes(const std::wstring& name) {
 int ExecuteGetDomain(blackbone::Process& process) {
   typedef int(__cdecl*  mono_domain_get) ();
 
-  auto mono_get_root_domain_address = process.modules().GetExport(process.modules().GetModule(L"mono.dll"), "mono_domain_get");
+  auto mono_get_root_domain_address = process.modules().GetExport(process.modules().GetModule(L"mono-2.0-bdwgc.dll"), "mono_domain_get");
   if (mono_get_root_domain_address.procAddress == 0) {
     std::wcout << L"Could not find mono_domain_get!";
     return 0;
@@ -62,7 +62,7 @@ int ExecuteGetDomain(blackbone::Process& process) {
 int ExecuteImageOpenFromDataFull(blackbone::Process& process, std::vector<char>& data) {
   typedef int(__cdecl* mono_image_open_from_data_full) (int data, unsigned int data_len, int need_copy, int *status, int refonly);
 
-  auto mono_image_open_from_data_full_address = process.modules().GetExport(process.modules().GetModule(L"mono.dll"), "mono_image_open_from_data");
+  auto mono_image_open_from_data_full_address = process.modules().GetExport(process.modules().GetModule(L"mono-2.0-bdwgc.dll"), "mono_image_open_from_data");
   if (mono_image_open_from_data_full_address.procAddress == 0) {
     std::wcout << L"Could not find mono_image_open_from_data_full!";
     return 0;
@@ -84,7 +84,7 @@ int ExecuteImageOpenFromDataFull(blackbone::Process& process, std::vector<char>&
 int ExecuteAssemblyLoadFromFull(blackbone::Process& process, int image) {
   typedef int(__cdecl* mono_assembly_load_from_full) (int image, int *fname, int *status, bool refonly);
 
-  auto mono_assembly_load_from_full_address = process.modules().GetExport(process.modules().GetModule(L"mono.dll"), "mono_assembly_load_from_full");
+  auto mono_assembly_load_from_full_address = process.modules().GetExport(process.modules().GetModule(L"mono-2.0-bdwgc.dll"), "mono_assembly_load_from_full");
   if (mono_assembly_load_from_full_address.procAddress == 0) {
     std::wcout << L"Could not find mono_assembly_load_from_full!";
     return 0;
@@ -101,7 +101,7 @@ int ExecuteAssemblyLoadFromFull(blackbone::Process& process, int image) {
 int ExecuteAssemblyGetImage(blackbone::Process& process, int assembly) {
   typedef int(__cdecl*  mono_assembly_get_image) (int assembly);
 
-  auto mono_assembly_get_image_address = process.modules().GetExport(process.modules().GetModule(L"mono.dll"), "mono_assembly_get_image");
+  auto mono_assembly_get_image_address = process.modules().GetExport(process.modules().GetModule(L"mono-2.0-bdwgc.dll"), "mono_assembly_get_image");
   if (mono_assembly_get_image_address.procAddress == 0) {
     std::wcout << L"Could not find mono_assembly_get_image!";
     return 0;
@@ -117,7 +117,7 @@ int ExecuteAssemblyGetImage(blackbone::Process& process, int assembly) {
 int ExecuteGetClassFromName(blackbone::Process& process, int image, const char* name_space, const char* name) {
   typedef int(__cdecl*  mono_class_from_name) (int image, const char* name_space, const char *name);
 
-  auto mono_class_from_name_address = process.modules().GetExport(process.modules().GetModule(L"mono.dll"), "mono_class_from_name");
+  auto mono_class_from_name_address = process.modules().GetExport(process.modules().GetModule(L"mono-2.0-bdwgc.dll"), "mono_class_from_name");
   if (mono_class_from_name_address.procAddress == 0) {
     std::wcout << L"Could not find mono_class_from_name!";
     return 0;
@@ -133,7 +133,7 @@ int ExecuteGetClassFromName(blackbone::Process& process, int image, const char* 
 int ExecuteGetMethodFromName(blackbone::Process& process, int klass, const char* name) {
   typedef int(__cdecl*  mono_class_get_method_from_name) (int klass, const char *name, int param_count);
 
-  auto mono_class_get_method_from_name_address = process.modules().GetExport(process.modules().GetModule(L"mono.dll"), "mono_class_get_method_from_name");
+  auto mono_class_get_method_from_name_address = process.modules().GetExport(process.modules().GetModule(L"mono-2.0-bdwgc.dll"), "mono_class_get_method_from_name");
   if (mono_class_get_method_from_name_address.procAddress == 0) {
     std::wcout << L"Could not find mono_class_get_method_from_name!";
     return 0;
@@ -149,7 +149,7 @@ int ExecuteGetMethodFromName(blackbone::Process& process, int klass, const char*
 int ExecuteRuntimeInvoke(blackbone::Process& process, int method) {
   typedef int(__cdecl*   mono_runtime_invoke) (int method, void *obj, void **params, int **exc);
 
-  auto mono_runtime_invoke_address = process.modules().GetExport(process.modules().GetModule(L"mono.dll"), "mono_runtime_invoke");
+  auto mono_runtime_invoke_address = process.modules().GetExport(process.modules().GetModule(L"mono-2.0-bdwgc.dll"), "mono_runtime_invoke");
   if (mono_runtime_invoke_address.procAddress == 0) {
     std::wcout << L"Could not find mono_runtime_invoke!";
     return 0;
